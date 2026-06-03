@@ -1,0 +1,26 @@
+# OpenSpec プロジェクト設定
+# 配置場所：プロジェクトルート/openspec/config.yaml
+
+schema: with-review
+
+context: |
+  技術スタック：React 19, TypeScript, Vite, Tailwind CSS 4, Zustand, Vitest
+  ルーティング：React Router 7
+  コード規約：ESLint + Prettier
+  テストコマンド：npx vitest run
+  全ての新機能は TDD サイクルに従うこと——先に失敗するテストを書き、その後に実装コードを書く
+  全ての成果物は日本語で記述すること（proposal、specs、design、review、tasks）
+
+rules:
+  specs:
+    - 各データフィールドの変更において、null、空値、境界外の3つの異常シナリオを網羅すること
+    - Scenario は #### 見出し4を使用すること。そうでない場合、アーカイブ時に反映されない
+  design:
+    - データ構造の変更を伴う設計には、マイグレーション方案を含めること
+  tasks:
+    - 各 task には完全なテストコードと実装コードを含めること
+    - テストタスクにはアサーション内容を指定すること。「テストを書く」とだけ記述してはならない
+    - 各 task グループの最初のステップは失敗するテストを書くこと、最後のステップは検証通過であること
+  review:
+    - tasks.md の粒度が各 step 2〜5分程度になっているか重点的に確認すること
+    - プレースホルダー（TBD、TODO、implement later）がないか確認すること
