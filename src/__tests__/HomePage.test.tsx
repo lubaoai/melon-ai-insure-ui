@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeAll, afterAll, afterEach } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import { setupServer } from 'msw/node';
-import { http, HttpResponse } from 'msw';
+import { http, HttpResponse, delay } from 'msw';
 import HomePage from '../app/views/HomePage';
 
 const mockProducts = [
@@ -42,6 +42,20 @@ afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
 describe('HomePage', () => {
+  it('データ取得中にローディング表示がされること', async () => {
+    server.use(
+      http.get('/api/products', async () => {
+        await delay(100);
+        return HttpResponse.json(mockProducts);
+      }),
+    );
+    render(<HomePage />);
+    expect(screen.getByText('読み込み中...')).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByText('医療保険プレミアム')).toBeInTheDocument();
+    });
+  });
+
   it('ページタイトル「保険商品一覧」が表示されること', () => {
     render(<HomePage />);
     expect(screen.getByText('保険商品一覧')).toBeInTheDocument();

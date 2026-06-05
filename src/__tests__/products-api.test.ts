@@ -35,4 +35,9 @@ describe('getInsuranceProducts', () => {
     server.use(http.get('/api/products', () => HttpResponse.error()));
     await expect(getInsuranceProducts()).rejects.toThrow();
   });
+
+  it('HTTPエラーレスポンス時にステータスコードを含むエラーをスローすること', async () => {
+    server.use(http.get('/api/products', () => new HttpResponse(null, { status: 500 })));
+    await expect(getInsuranceProducts()).rejects.toThrow('API error: 500');
+  });
 });

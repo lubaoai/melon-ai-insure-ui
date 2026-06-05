@@ -7,6 +7,9 @@ project:
 
 schema: with-review
 
+templates:
+  review: schemas/with-review/templates/review.md
+
 context: |
   技術スタック：React 19, TypeScript, Vite, Tailwind CSS 4, Zustand, Vitest, MSW
   ルーティング：React Router 7
