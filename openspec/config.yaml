@@ -1,10 +1,14 @@
 # OpenSpec プロジェクト設定
 # 配置場所：プロジェクトルート/openspec/config.yaml
 
+project:
+  name: melon-ai-insure-ui
+  description: 保険商品販売 フロントエンド
+
 schema: with-review
 
 context: |
-  技術スタック：React 19, TypeScript, Vite, Tailwind CSS 4, Zustand, Vitest
+  技術スタック：React 19, TypeScript, Vite, Tailwind CSS 4, Zustand, Vitest, MSW
   ルーティング：React Router 7
   コード規約：ESLint + Prettier
   テストコマンド：npx vitest run
