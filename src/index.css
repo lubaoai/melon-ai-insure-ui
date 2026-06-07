@@ -1,1 +1,51 @@
 @import 'tailwindcss';
+
+@theme {
+  --color-primary: #b40081;
+  --color-primary-light: #ffe5f7;
+  --color-primary-dark: #8a0060;
+  --color-primary-link: #bd0980;
+
+  --color-cta: #FF8B2C;
+  --color-cta-hover: #FFB87E;
+  --color-cta-dark: #e07020;
+
+  --color-warning: #E99606;
+  --color-warning-light: #FFF3D6;
+
+  --color-accent-orange: #F49D34;
+  --color-accent-blue: #005BAC;
+  --color-accent-teal: #82D7DC;
+  --color-sub1: #1d76d8;
+
+  --color-cream: #FDFCF6;
+  --color-label-bg: #ffe5f7;
+  --color-input-bg: #f5f5f5;
+  --color-button-area: #CCCCCC;
+  --color-green-area: #E9F2CD;
+  --color-inquiry-bg: #FBEFFB;
+  --color-border: #A6A6A6;
+  --color-error: #E3524A;
+  --color-disabled: #808080;
+  --color-qa-bg: #EEEEEE;
+  --color-hover-light: #DDDDDD;
+
+  --color-text-primary: #393939;
+  --color-text-light: #666666;
+  --color-text-white: #FFFFFF;
+
+  --font-family-sans: "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+  --font-size-heading: 18px;
+  --font-size-body: 15px;
+  --font-size-small: 12px;
+  --line-height-base: 1.2;
+
+  --radius-sm: 4px;
+  --radius-md: 5px;
+  --radius-lg: 8px;
+
+  --shadow-soft: 2px 2px 1px #999999;
+
+  --spacing-content-max: 1024px;
+  --spacing-main-width: 800px;
+}

@@ -18,20 +18,27 @@ export function IntentionSection({ canProceed, onCustomerNumberChange, onBack, o
 
   return (
     <div className="m-2">
-      <div className="border-4 border-primary mt-4">
-        <h1 className="bg-primary text-text-white px-5 pt-1.5 pb-1 text-heading font-bold">
+      <div className="border-4 border-sub1 mt-4">
+        <h1 className="bg-sub1 text-text-white px-5 pt-1.5 pb-1 text-heading font-bold">
           お客様番号
         </h1>
-        <div className="bg-cream p-4">
-          <label className="block text-base text-text-primary">
-            お客様番号
-            <input
-              type="text"
-              onChange={handleInput}
-              className="mt-1 block w-full max-w-[400px] rounded-md border border-border bg-white px-3 py-2 text-base text-text-primary focus:border-primary focus:outline-none"
-              placeholder="お客様番号を入力してください"
-            />
-          </label>
+        <div className="bg-cream">
+          <div className="m-2">
+            <div className="inline-flex w-full max-w-[600px]">
+              <div className="border border-border bg-label-bg px-3 py-2 text-sm font-bold text-text-primary whitespace-nowrap flex items-center">
+                お客様番号
+                <span className="ml-2 bg-error text-text-white text-small px-1.5 py-0.5 rounded-sm">必須</span>
+              </div>
+              <div className="border border-l-0 border-border bg-input-bg px-3 py-2 flex-1">
+                <input
+                  type="text"
+                  onChange={handleInput}
+                  className="h-[30px] w-full max-w-[300px] rounded-lg border border-border bg-white px-2.5 text-base text-text-primary focus:border-sub1 focus:outline-none"
+                  placeholder="お客様番号を入力してください"
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 

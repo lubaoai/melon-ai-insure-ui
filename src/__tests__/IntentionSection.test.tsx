@@ -4,14 +4,15 @@ import userEvent from '@testing-library/user-event';
 import { IntentionSection } from '../components/home/IntentionSection';
 
 describe('IntentionSection コンポーネント', () => {
-  it('マゼンタ見出し「お客様番号」が表示されること', () => {
+  it('青見出し「お客様番号」が表示されること', () => {
     render(<IntentionSection canProceed={false} onCustomerNumberChange={vi.fn()} onBack={vi.fn()} onNext={vi.fn()} />);
     expect(screen.getByRole('heading', { name: 'お客様番号' })).toBeInTheDocument();
   });
 
-  it('お客様番号入力フィールドが表示されること', () => {
+  it('お客様番号入力フィールドと必須ラベルが表示されること', () => {
     render(<IntentionSection canProceed={false} onCustomerNumberChange={vi.fn()} onBack={vi.fn()} onNext={vi.fn()} />);
     expect(screen.getByPlaceholderText('お客様番号を入力してください')).toBeInTheDocument();
+    expect(screen.getByText('必須')).toBeInTheDocument();
   });
 
   it('戻るボタンが常に活性であること', () => {
