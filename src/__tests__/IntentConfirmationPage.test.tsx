@@ -14,14 +14,14 @@ describe('IntentConfirmationPage', () => {
     expect(screen.getByText(/契約の概要（注意喚起情報）/)).toBeInTheDocument();
   });
 
-  it('CautionSectionが表示されること', () => {
+  it('ご確認いただきたい事項セクションが表示されること', () => {
     render(<BrowserRouter><IntentConfirmationPage /></BrowserRouter>);
-    expect(screen.getByText('注意喚起')).toBeInTheDocument();
+    expect(screen.getByText('ご確認いただきたい事項')).toBeInTheDocument();
   });
 
-  it('意向確認セクションが表示されること', () => {
+  it('お客様番号セクションが表示されること', () => {
     render(<BrowserRouter><IntentConfirmationPage /></BrowserRouter>);
-    expect(screen.getByText('意向確認')).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'お客様番号' })).toBeInTheDocument();
   });
 
   it('Q&Aサイドバーが表示されること', () => {

@@ -3,9 +3,9 @@ import { render, screen } from '@testing-library/react';
 import { CautionSection } from '../components/home/CautionSection';
 
 describe('CautionSection コンポーネント', () => {
-  it('マゼンタ見出し「注意喚起」が表示されること', () => {
+  it('マゼンタ見出し「ご確認いただきたい事項」が表示されること', () => {
     render(<CautionSection />);
-    expect(screen.getByText('注意喚起')).toBeInTheDocument();
+    expect(screen.getByText('ご確認いただきたい事項')).toBeInTheDocument();
   });
 
   it('スクロール可能な領域が表示されること', () => {

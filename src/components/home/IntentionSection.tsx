@@ -3,32 +3,34 @@ import { Icon } from '../ui/Icon';
 
 interface IntentionSectionProps {
   canProceed: boolean;
-  onAgree: (agreed: boolean) => void;
+  onCustomerNumberChange: (value: string) => void;
   onBack: () => void;
   onNext: () => void;
 }
 
-export function IntentionSection({ canProceed, onAgree, onBack, onNext }: IntentionSectionProps) {
-  const handleCheck = useCallback(
+export function IntentionSection({ canProceed, onCustomerNumberChange, onBack, onNext }: IntentionSectionProps) {
+  const handleInput = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      onAgree(e.target.checked);
+      onCustomerNumberChange(e.target.value);
     },
-    [onAgree],
+    [onCustomerNumberChange],
   );
 
   return (
     <div className="m-2">
       <div className="border-4 border-primary mt-4">
         <h1 className="bg-primary text-text-white px-5 pt-1.5 pb-1 text-heading font-bold">
-          意向確認
+          お客様番号
         </h1>
         <div className="bg-cream p-4">
-          <label className="inline-flex items-center gap-2 cursor-pointer">
-            <input type="checkbox" onChange={handleCheck} className="sr-only" />
-            <span className="h-6 w-6 rounded-[4px] border border-border bg-cream" />
-            <span className="text-base text-text-primary">
-              上記の内容について確認し、同意します
-            </span>
+          <label className="block text-base text-text-primary">
+            お客様番号
+            <input
+              type="text"
+              onChange={handleInput}
+              className="mt-1 block w-full max-w-[400px] rounded-md border border-border bg-white px-3 py-2 text-base text-text-primary focus:border-primary focus:outline-none"
+              placeholder="お客様番号を入力してください"
+            />
           </label>
         </div>
       </div>

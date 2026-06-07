@@ -15,10 +15,10 @@ const qaItems = [
 
 function IntentConfirmationPage() {
   const [confirmed, setConfirmed] = useState(false);
-  const [agreed, setAgreed] = useState(false);
+  const [customerNumber, setCustomerNumber] = useState('');
   const navigate = useNavigate();
 
-  const canProceed = confirmed && agreed;
+  const canProceed = confirmed && customerNumber.trim() !== '';
 
   return (
     <div className="bg-white font-sans">
@@ -31,7 +31,7 @@ function IntentConfirmationPage() {
             <CautionSection />
             <IntentionSection
               canProceed={canProceed}
-              onAgree={setAgreed}
+              onCustomerNumberChange={setCustomerNumber}
               onBack={() => navigate('/')}
               onNext={() => console.log('Navigate to application input page')}
             />
