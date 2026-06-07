@@ -8,13 +8,15 @@ describe('CautionSection コンポーネント', () => {
     expect(screen.getByText('ご確認いただきたい事項')).toBeInTheDocument();
   });
 
-  it('スクロール可能な領域が表示されること', () => {
+  it('確認案内テキストが表示されること', () => {
     render(<CautionSection />);
-    expect(screen.getByTestId('caution-scroll')).toBeInTheDocument();
+    expect(screen.getByText(/下記の事項を充分ご確認ください/)).toBeInTheDocument();
+    expect(screen.getByText(/全て「はい」の場合のみお申込が可能です/)).toBeInTheDocument();
   });
 
-  it('全文を見るリンクが表示されること', () => {
+  it('3つの確認項目のラジオボタンが表示されること', () => {
     render(<CautionSection />);
-    expect(screen.getByText('＞全文を見る')).toBeInTheDocument();
+    const radios = screen.getAllByRole('radio');
+    expect(radios.length).toBe(6);
   });
 });
