@@ -22,7 +22,16 @@ describe('ルーティング', () => {
         <AppRoutes />
       </MemoryRouter>,
     );
-    expect(screen.getByText('保険商品一覧')).toBeInTheDocument();
+    expect(screen.getByText('①重要事項同意')).toBeInTheDocument();
+  });
+
+  it('/application-inputでApplicationInputPageが表示されること', () => {
+    render(
+      <MemoryRouter initialEntries={['/application-input']}>
+        <AppRoutes />
+      </MemoryRouter>,
+    );
+    expect(screen.getByText('③申込内容入力')).toBeInTheDocument();
   });
 
   it('存在しないパスで404ページが表示されること', () => {

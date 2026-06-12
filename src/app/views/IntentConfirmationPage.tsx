@@ -33,7 +33,7 @@ function IntentConfirmationPage() {
               canProceed={canProceed}
               onCustomerNumberChange={setCustomerNumber}
               onBack={() => navigate('/')}
-              onNext={() => console.log('Navigate to application input page')}
+              onNext={() => navigate('/application-input')}
             />
           </div>
 
