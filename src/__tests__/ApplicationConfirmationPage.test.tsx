@@ -1,8 +1,16 @@
-import { describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import { BrowserRouter } from 'react-router-dom';
+import { MemoryRouter, useNavigate } from 'react-router-dom';
 import { useApplicationFormStore } from '../store/applicationFormStore';
 import ApplicationConfirmationPage from '../app/views/ApplicationConfirmationPage';
+
+vi.mock('react-router-dom', async () => {
+  const actual = await vi.importActual<typeof import('react-router-dom')>('react-router-dom');
+  return {
+    ...actual,
+    useNavigate: vi.fn(),
+  };
+});
 
 const filledState = {
   contractDate: '2026/07/01',
@@ -22,15 +30,16 @@ const filledState = {
 describe('ApplicationConfirmationPage', () => {
   beforeEach(() => {
     useApplicationFormStore.setState(filledState);
+    vi.mocked(useNavigate).mockReturnValue(vi.fn());
   });
 
   it('ステップナビゲーションのステップ4が表示されること', () => {
-    render(<BrowserRouter><ApplicationConfirmationPage /></BrowserRouter>);
+    render(<MemoryRouter><ApplicationConfirmationPage /></MemoryRouter>);
     expect(screen.getByText('④申込内容確認')).toBeInTheDocument();
   });
 
   it('全7セクションの見出しが表示されること', () => {
-    render(<BrowserRouter><ApplicationConfirmationPage /></BrowserRouter>);
+    render(<MemoryRouter><ApplicationConfirmationPage /></MemoryRouter>);
     expect(screen.getByRole('heading', { name: /① 契約希望日/ })).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: /② ご契約コース/ })).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: /③ 住居の概要/ })).toBeInTheDocument();
@@ -41,13 +50,42 @@ describe('ApplicationConfirmationPage', () => {
   });
 
   it('Q&Aサイドバーが表示されること', () => {
-    render(<BrowserRouter><ApplicationConfirmationPage /></BrowserRouter>);
+    render(<MemoryRouter><ApplicationConfirmationPage /></MemoryRouter>);
     expect(screen.getByText('よくある質問')).toBeInTheDocument();
   });
 
   it('戻るボタンと次へボタンが表示されること', () => {
-    render(<BrowserRouter><ApplicationConfirmationPage /></BrowserRouter>);
+    render(<MemoryRouter><ApplicationConfirmationPage /></MemoryRouter>);
     expect(screen.getByRole('button', { name: /戻る/ })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: /次へ/ })).toBeInTheDocument();
+  });
+
+  it('ストアにデータが存在しない場合は/application-inputにリダイレクトされること', () => {
+    const mockNavigate = vi.fn();
+    vi.mocked(useNavigate).mockReturnValue(mockNavigate);
+
+    // ストアを空の状態にリセット
+    useApplicationFormStore.setState({
+      contractDate: '',
+      contractCourse: { insurancePeriod: '1', paymentMethod: '5', product: 'K008', planType: '' },
+      housingOverview: { structure: '1', housingType: '2', totalFloors: '', residentFloor: '' },
+      contractorInfo: {
+        contractType: '1', corporateName: '', corporateNameKana: '', positionName: '',
+        name: '', nameKana: '', sex: '1', birthYear: '', birthMonth: '', birthDay: '',
+        postalCode: '', address: '', buildingName: '', addressKana: '',
+        phone1: '', phone2: '', phone3: '',
+      },
+      residenceLocation: { postalCode: '', address: '', buildingName: '', addressKana: '' },
+      primaryResident: {
+        residentType: '', name: '', nameKana: '', sex: '1',
+        birthYear: '', birthMonth: '', birthDay: '',
+        relationship: '', relationshipNote: '',
+        phone1: '', phone2: '', phone3: '',
+      },
+      coResident: { hasCoResident: false, residents: [] },
+    });
+
+    render(<MemoryRouter><ApplicationConfirmationPage /></MemoryRouter>);
+    expect(mockNavigate).toHaveBeenCalledWith('/application-input', { replace: true });
   });
 });

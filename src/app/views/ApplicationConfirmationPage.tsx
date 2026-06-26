@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { StepNavigation } from '../../components/layout/StepNavigation';
 import { QASidebar } from '../../components/home/QASidebar';
@@ -22,6 +22,12 @@ const qaItems = [
 function ApplicationConfirmationPage() {
   const navigate = useNavigate();
   const store = useApplicationFormStore();
+
+  useEffect(() => {
+    if (!store.hasData()) {
+      navigate('/application-input', { replace: true });
+    }
+  }, [store, navigate]);
 
   const handleBack = useCallback(() => {
     navigate('/application-input');
