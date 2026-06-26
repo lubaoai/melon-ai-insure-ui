@@ -34,6 +34,15 @@ describe('ルーティング', () => {
     expect(screen.getByText('③申込内容入力')).toBeInTheDocument();
   });
 
+  it('/application-confirmationでApplicationConfirmationPageが表示されること', () => {
+    render(
+      <MemoryRouter initialEntries={['/application-confirmation']}>
+        <AppRoutes />
+      </MemoryRouter>,
+    );
+    expect(screen.getByText('④申込内容確認')).toBeInTheDocument();
+  });
+
   it('存在しないパスで404ページが表示されること', () => {
     render(
       <MemoryRouter initialEntries={['/nonexistent-path']}>
