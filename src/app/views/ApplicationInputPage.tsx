@@ -24,7 +24,7 @@ function ApplicationInputPage() {
   const navigate = useNavigate();
   const {
     contractDate, contractCourse, housingOverview, contractorInfo,
-    residenceLocation, primaryResident, coResident,
+    residenceLocation, primaryResident, coResident, insurancePremium,
     setContractDate, setContractCourse, setHousingOverview, setContractorInfo,
     setResidenceLocation, setPrimaryResident, setCoResident,
   } = useApplicationFormStore();
@@ -117,11 +117,11 @@ function ApplicationInputPage() {
       <main className="px-4 py-4">
         <div className="flex flex-col gap-4 min-[875px]:flex-row">
           <div className="w-full min-[875px]:w-[800px]">
-            <ContractDateSection onChange={setContractDate} />
-            <ContractCourseSection onChange={setContractCourse} />
-            <HousingOverviewSection onChange={setHousingOverview} />
-            <ContractorInfoSection onChange={setContractorInfo} />
-            <ResidenceLocationSection onChange={setResidenceLocation} contractorAddress={contractorAddress} />
+            <ContractDateSection onChange={setContractDate} value={contractDate} />
+            <ContractCourseSection onChange={setContractCourse} defaultValue={contractCourse} insurancePremium={insurancePremium} />
+            <HousingOverviewSection onChange={setHousingOverview} defaultValue={housingOverview} />
+            <ContractorInfoSection onChange={setContractorInfo} defaultValue={contractorInfo} />
+            <ResidenceLocationSection onChange={setResidenceLocation} contractorAddress={contractorAddress} defaultValue={residenceLocation} />
             <PrimaryResidentSection onChange={setPrimaryResident} />
             <CoResidentSection onChange={setCoResident} />
             <NavigationButtons canProceed={canProceed} onBack={handleBack} onNext={handleNext} />
