@@ -47,8 +47,9 @@ function PaymentPage() {
   }, [navigate]);
 
   const handleNext = useCallback(() => {
-    console.log('PaymentPage: next clicked — proceed to completion');
-  }, []);
+    store.setIsCompleted(true);
+    navigate('/application-completion');
+  }, [store, navigate]);
 
   return (
     <div className="bg-white font-sans">
@@ -59,7 +60,7 @@ function PaymentPage() {
           <div className="w-full min-[875px]:w-[800px]">
             <PaymentMethodSection value={paymentMethod} onChange={handlePaymentMethodChange} />
             <CreditCardSection data={creditCardInfo} onChange={handleCreditCardInfoChange} />
-            <PaymentAmountSection amount={0} />
+            <PaymentAmountSection amount={store.insurancePremium} />
             <PaymentCautionSection />
             <NavigationButtons canProceed={isValid} onBack={handleBack} onNext={handleNext} />
           </div>
