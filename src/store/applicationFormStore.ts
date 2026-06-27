@@ -33,6 +33,8 @@ interface ApplicationFormState {
   setCoResident: (data: CoResidentData) => void;
   setPaymentMethod: (method: string) => void;
   setCreditCardInfo: (data: CreditCardInfoData) => void;
+  isCompleted: boolean;
+  setIsCompleted: (value: boolean) => void;
   hasData: () => boolean;
 }
 
@@ -65,5 +67,7 @@ export const useApplicationFormStore = create<ApplicationFormState>((set, get) =
   setCoResident: (data) => set({ coResident: data }),
   setPaymentMethod: (method) => set({ paymentMethod: method }),
   setCreditCardInfo: (data) => set({ creditCardInfo: data }),
+  isCompleted: false,
+  setIsCompleted: (value) => set({ isCompleted: value }),
   hasData: () => get().contractDate.trim() !== '' || get().contractorInfo.name.trim() !== '',
 }));
