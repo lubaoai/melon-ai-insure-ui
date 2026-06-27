@@ -35,20 +35,27 @@ interface ApplicationFormState {
   setCreditCardInfo: (data: CreditCardInfoData) => void;
   isCompleted: boolean;
   setIsCompleted: (value: boolean) => void;
+  insurancePremium: number;
+  setInsurancePremium: (amount: number) => void;
   hasData: () => boolean;
 }
 
 export const useApplicationFormStore = create<ApplicationFormState>((set, get) => ({
   contractDate: '',
-  contractCourse: { insurancePeriod: '1', paymentMethod: '5', product: 'K008', planType: '' },
-  housingOverview: { structure: '1', housingType: '2', totalFloors: '', residentFloor: '' },
+  contractCourse: { insurancePeriod: '1', paymentMethod: '5', product: 'K008', planType: '1Y8C' },
+  housingOverview: { structure: '1', housingType: '2', totalFloors: '10', residentFloor: '6' },
   contractorInfo: {
     contractType: '1', corporateName: '', corporateNameKana: '', positionName: '',
-    name: '', nameKana: '', sex: '1', birthYear: '', birthMonth: '', birthDay: '',
-    postalCode: '', address: '', buildingName: '', addressKana: '',
-    phone1: '', phone2: '', phone3: '',
+    name: '保険太郎', nameKana: 'ホケンタロウ', sex: '1',
+    birthYear: '1975', birthMonth: '11', birthDay: '2',
+    postalCode: '1040041', address: '東京都中央区新富2-5-10',
+    buildingName: 'アパホテル', addressKana: 'トウキョウト チュウオウク シントミ 2-5-10',
+    phone1: '0570', phone2: '044', phone3: '811',
   },
-  residenceLocation: { postalCode: '', address: '', buildingName: '', addressKana: '' },
+  residenceLocation: {
+    postalCode: '1040041', address: '東京都中央区新富2-5-10',
+    buildingName: 'アパホテル', addressKana: 'トウキョウト チュウオウク シントミ 2-5-10',
+  },
   primaryResident: {
     residentType: '', name: '', nameKana: '', sex: '1',
     birthYear: '', birthMonth: '', birthDay: '',
@@ -69,5 +76,7 @@ export const useApplicationFormStore = create<ApplicationFormState>((set, get) =
   setCreditCardInfo: (data) => set({ creditCardInfo: data }),
   isCompleted: false,
   setIsCompleted: (value) => set({ isCompleted: value }),
+  insurancePremium: 880,
+  setInsurancePremium: (amount) => set({ insurancePremium: amount }),
   hasData: () => get().contractDate.trim() !== '' || get().contractorInfo.name.trim() !== '',
 }));
