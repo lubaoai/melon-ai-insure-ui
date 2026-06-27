@@ -6,6 +6,14 @@ import type { ResidenceLocationData } from '../components/application/ResidenceL
 import type { PrimaryResidentData } from '../components/application/PrimaryResidentSection';
 import type { CoResidentData } from '../components/application/CoResidentSection';
 
+export interface CreditCardInfoData {
+  cardNumber: string;
+  expiryMonth: string;
+  expiryYear: string;
+  cardHolder: string;
+  securityCode: string;
+}
+
 interface ApplicationFormState {
   contractDate: string;
   contractCourse: ContractCourseData;
@@ -14,6 +22,8 @@ interface ApplicationFormState {
   residenceLocation: ResidenceLocationData;
   primaryResident: PrimaryResidentData;
   coResident: CoResidentData;
+  paymentMethod: string;
+  creditCardInfo: CreditCardInfoData;
   setContractDate: (date: string) => void;
   setContractCourse: (data: ContractCourseData) => void;
   setHousingOverview: (data: HousingOverviewData) => void;
@@ -21,6 +31,8 @@ interface ApplicationFormState {
   setResidenceLocation: (data: ResidenceLocationData) => void;
   setPrimaryResident: (data: PrimaryResidentData) => void;
   setCoResident: (data: CoResidentData) => void;
+  setPaymentMethod: (method: string) => void;
+  setCreditCardInfo: (data: CreditCardInfoData) => void;
   hasData: () => boolean;
 }
 
@@ -42,6 +54,8 @@ export const useApplicationFormStore = create<ApplicationFormState>((set, get) =
     phone1: '', phone2: '', phone3: '',
   },
   coResident: { hasCoResident: false, residents: [] },
+  paymentMethod: 'credit',
+  creditCardInfo: { cardNumber: '', expiryMonth: '', expiryYear: '', cardHolder: '', securityCode: '' },
   setContractDate: (date) => set({ contractDate: date }),
   setContractCourse: (data) => set({ contractCourse: data }),
   setHousingOverview: (data) => set({ housingOverview: data }),
@@ -49,5 +63,7 @@ export const useApplicationFormStore = create<ApplicationFormState>((set, get) =
   setResidenceLocation: (data) => set({ residenceLocation: data }),
   setPrimaryResident: (data) => set({ primaryResident: data }),
   setCoResident: (data) => set({ coResident: data }),
+  setPaymentMethod: (method) => set({ paymentMethod: method }),
+  setCreditCardInfo: (data) => set({ creditCardInfo: data }),
   hasData: () => get().contractDate.trim() !== '' || get().contractorInfo.name.trim() !== '',
 }));
