@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { MemoryRouter, useNavigate } from 'react-router-dom';
 import { useApplicationFormStore } from '../store/applicationFormStore';
 import ApplicationConfirmationPage from '../app/views/ApplicationConfirmationPage';
@@ -87,5 +87,16 @@ describe('ApplicationConfirmationPage', () => {
 
     render(<MemoryRouter><ApplicationConfirmationPage /></MemoryRouter>);
     expect(mockNavigate).toHaveBeenCalledWith('/application-input', { replace: true });
+  });
+
+  it('次へボタンをクリックすると /payment に遷移すること', () => {
+    const mockNavigate = vi.fn();
+    vi.mocked(useNavigate).mockReturnValue(mockNavigate);
+
+    render(<MemoryRouter><ApplicationConfirmationPage /></MemoryRouter>);
+
+    const nextButton = screen.getByRole('button', { name: /次へ/ });
+    fireEvent.click(nextButton);
+    expect(mockNavigate).toHaveBeenCalledWith('/payment');
   });
 });

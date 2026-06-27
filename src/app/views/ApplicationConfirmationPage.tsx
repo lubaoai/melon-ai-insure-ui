@@ -34,8 +34,8 @@ function ApplicationConfirmationPage() {
   }, [navigate]);
 
   const handleNext = useCallback(() => {
-    console.log('ApplicationConfirmationPage: next clicked — submit application');
-  }, []);
+    navigate('/payment');
+  }, [navigate]);
 
   return (
     <div className="bg-white font-sans">
