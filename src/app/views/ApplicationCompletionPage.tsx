@@ -26,7 +26,7 @@ function ApplicationCompletionPage() {
       <main className="px-4 py-4">
         <div className="max-w-[800px] mx-auto">
           <CompletionMessageSection receptionNumber={receptionNumber} />
-          <CompletionSummarySection data={store.contractCourse} amount={0} />
+          <CompletionSummarySection data={store.contractCourse} amount={store.insurancePremium} />
           <div className="m-2 text-center mt-6">
             <Link
               to="/"

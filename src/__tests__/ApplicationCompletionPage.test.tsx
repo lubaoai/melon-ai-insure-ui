@@ -7,6 +7,7 @@ vi.mock('../store/applicationFormStore', () => ({
   useApplicationFormStore: () => ({
     hasData: () => true,
     contractCourse: { insurancePeriod: '1', paymentMethod: '5', product: 'K008', planType: '1Y8C' },
+    insurancePremium: 880,
   }),
 }));
 
@@ -46,5 +47,10 @@ describe('ApplicationCompletionPage コンポーネント', () => {
   it('Q&Aサイドバーが表示されないこと', () => {
     renderWithRouter();
     expect(screen.queryByText('よくある質問')).not.toBeInTheDocument();
+  });
+
+  it('保険料合計に880円が表示されること', () => {
+    renderWithRouter();
+    expect(screen.getByText('880円')).toBeInTheDocument();
   });
 });
