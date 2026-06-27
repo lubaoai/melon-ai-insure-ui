@@ -33,7 +33,7 @@ describe('ContractCourseConfirmationSection コンポーネント', () => {
 
   it('商品名が表示されること', () => {
     render(<ContractCourseConfirmationSection data={defaultData} />);
-    expect(screen.getByText('イオンの新家財保険')).toBeInTheDocument();
+    expect(screen.getByText('メロンの新家財保険')).toBeInTheDocument();
   });
 
   it('プラン種別が表示されること', () => {
