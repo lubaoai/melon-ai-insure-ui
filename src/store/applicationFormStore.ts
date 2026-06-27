@@ -5,6 +5,7 @@ import type { ContractorInfoData } from '../components/application/ContractorInf
 import type { ResidenceLocationData } from '../components/application/ResidenceLocationSection';
 import type { PrimaryResidentData } from '../components/application/PrimaryResidentSection';
 import type { CoResidentData } from '../components/application/CoResidentSection';
+import { getDefaultContractDate } from '../utils/defaultContractDate';
 
 export interface CreditCardInfoData {
   cardNumber: string;
@@ -41,7 +42,7 @@ interface ApplicationFormState {
 }
 
 export const useApplicationFormStore = create<ApplicationFormState>((set, get) => ({
-  contractDate: '',
+  contractDate: getDefaultContractDate(),
   contractCourse: { insurancePeriod: '1', paymentMethod: '5', product: 'K008', planType: '1Y8C' },
   housingOverview: { structure: '1', housingType: '2', totalFloors: '10', residentFloor: '6' },
   contractorInfo: {
