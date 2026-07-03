@@ -40,4 +40,12 @@ describe('ResidenceLocationConfirmationSection コンポーネント', () => {
     render(<ResidenceLocationConfirmationSection data={{ ...data, postalCode: '' }} />);
     expect(screen.getByText('郵便番号')).toBeInTheDocument();
   });
+
+  it('ConfirmationRowコンポーネントを使用していること', () => {
+    const { container } = render(<ResidenceLocationConfirmationSection data={data} />);
+    const grids = container.querySelectorAll('.grid');
+    const firstRowGrid = grids[0];
+    expect(firstRowGrid.className).toContain('grid-cols-1');
+    expect(firstRowGrid.className).toContain('min-[875px]:grid-cols-[260px_1fr]');
+  });
 });

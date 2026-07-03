@@ -45,4 +45,12 @@ describe('ContractCourseConfirmationSection コンポーネント', () => {
     render(<ContractCourseConfirmationSection data={{ ...defaultData, planType: '' }} />);
     expect(screen.getByText('プラン種別')).toBeInTheDocument();
   });
+
+  it('ConfirmationRowコンポーネントを使用していること', () => {
+    const { container } = render(<ContractCourseConfirmationSection data={defaultData} />);
+    const grids = container.querySelectorAll('.grid');
+    const firstRowGrid = grids[0];
+    expect(firstRowGrid.className).toContain('grid-cols-1');
+    expect(firstRowGrid.className).toContain('min-[875px]:grid-cols-[260px_1fr]');
+  });
 });

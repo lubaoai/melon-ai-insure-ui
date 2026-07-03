@@ -36,4 +36,12 @@ describe('HousingOverviewConfirmationSection コンポーネント', () => {
     render(<HousingOverviewConfirmationSection data={houseData} />);
     expect(screen.getByText('2階建')).toBeInTheDocument();
   });
+
+  it('ConfirmationRowコンポーネントを使用していること', () => {
+    const { container } = render(<HousingOverviewConfirmationSection data={apartmentData} />);
+    const grids = container.querySelectorAll('.grid');
+    const firstRowGrid = grids[0];
+    expect(firstRowGrid.className).toContain('grid-cols-1');
+    expect(firstRowGrid.className).toContain('min-[875px]:grid-cols-[260px_1fr]');
+  });
 });

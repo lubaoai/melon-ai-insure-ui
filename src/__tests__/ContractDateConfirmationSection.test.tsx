@@ -18,4 +18,12 @@ describe('ContractDateConfirmationSection コンポーネント', () => {
     render(<ContractDateConfirmationSection date="" />);
     expect(screen.getByText('契約希望日')).toBeInTheDocument();
   });
+
+  it('ConfirmationRowコンポーネントを使用していること', () => {
+    const { container } = render(<ContractDateConfirmationSection date="2026/07/01" />);
+    const grids = container.querySelectorAll('.grid');
+    const mainGrid = grids[0];
+    expect(mainGrid.className).toContain('grid-cols-1');
+    expect(mainGrid.className).toContain('min-[875px]:grid-cols-[260px_1fr]');
+  });
 });

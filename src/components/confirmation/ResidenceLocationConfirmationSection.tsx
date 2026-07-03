@@ -1,20 +1,8 @@
 import type { ResidenceLocationData } from '../application/ResidenceLocationSection';
+import { ConfirmationRow } from './ConfirmationRow';
 
 interface ResidenceLocationConfirmationSectionProps {
   data: ResidenceLocationData;
-}
-
-function ConfirmationRow({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="grid grid-cols-[260px_1fr] w-full mt-2 first:mt-0">
-      <div className="border border-border bg-label-bg px-3 py-2 text-sm font-bold text-text-primary whitespace-nowrap flex items-center">
-        {label}
-      </div>
-      <div className="border border-l-0 border-border bg-input-bg px-3 py-2 text-base text-text-primary">
-        {value}
-      </div>
-    </div>
-  );
 }
 
 export function ResidenceLocationConfirmationSection({ data }: ResidenceLocationConfirmationSectionProps) {

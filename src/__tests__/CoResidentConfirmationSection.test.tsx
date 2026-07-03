@@ -54,4 +54,12 @@ describe('CoResidentConfirmationSection コンポーネント', () => {
     render(<CoResidentConfirmationSection data={emptyResidentsData} />);
     expect(screen.getByText('あり')).toBeInTheDocument();
   });
+
+  it('ConfirmationRowコンポーネントを使用していること', () => {
+    const { container } = render(<CoResidentConfirmationSection data={withResidentData} />);
+    const grids = container.querySelectorAll('.grid');
+    const firstRowGrid = grids[0];
+    expect(firstRowGrid.className).toContain('grid-cols-1');
+    expect(firstRowGrid.className).toContain('min-[875px]:grid-cols-[260px_1fr]');
+  });
 });
