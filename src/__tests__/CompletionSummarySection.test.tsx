@@ -45,4 +45,12 @@ describe('CompletionSummarySection コンポーネント', () => {
     render(<CompletionSummarySection data={defaultData} amount={0} />);
     expect(screen.getByText('0円')).toBeInTheDocument();
   });
+
+  it('ConfirmationRowコンポーネントを使用していること', () => {
+    const { container } = render(<CompletionSummarySection data={defaultData} amount={15000} />);
+    const grids = container.querySelectorAll('.grid');
+    const firstRowGrid = grids[0];
+    expect(firstRowGrid.className).toContain('grid-cols-1');
+    expect(firstRowGrid.className).toContain('min-[875px]:grid-cols-[260px_1fr]');
+  });
 });
